@@ -75,6 +75,14 @@ MyGame.seed do
 end
 ```
 
+You can also add overlookable entities with the `rubble` and `scenery` parameters in `make`:
+
+```ruby
+make Room, name: 'room', description: 'A room with a tall ceiling.', scenery: ['ceiling//tall']
+
+make Thing, name: 'dining set', description: 'A plate and a fork.', rubble: ['plate', 'fork']
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
