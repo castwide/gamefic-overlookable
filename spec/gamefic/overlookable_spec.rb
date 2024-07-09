@@ -7,7 +7,7 @@ RSpec.describe Gamefic::Overlookable do
 
       seed do
         @room = make Room, name: 'room', description: 'A room with four walls and a ceiling.'
-        @room.overlook ['walls', 'four'], 'ceiling'
+        @room.overlook 'walls//four', 'ceiling'
       end
 
       introduction do |actor|
@@ -28,5 +28,19 @@ RSpec.describe Gamefic::Overlookable do
     expect(actor.messages).to include("There's nothing special about the walls.")
     actor.perform 'look ceiling'
     expect(actor.messages).to include("There's nothing special about the ceiling.")
+  end
+
+  it 'adds scenery from parameters' do
+    thing = plot.make(Thing, name: 'thing', description: 'A thing with a bump.', scenery: ['bump'])
+    expect(thing.children).to be_one
+    expect(thing.children.first).to be_a(Scenery)
+    expect(thing.children.first.name).to eq('bump')
+  end
+
+  it 'adds rubble from parameters' do
+    thing = plot.make(Thing, name: 'thing', description: 'A thing with a bump.', rubble: ['bump'])
+    expect(thing.children).to be_one
+    expect(thing.children.first).to be_a(Rubble)
+    expect(thing.children.first.name).to eq('bump')
   end
 end

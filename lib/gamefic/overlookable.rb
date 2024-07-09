@@ -10,12 +10,15 @@ module Gamefic
   #
   module Overlookable
     # Create Scenery that provides a default description for unimplemented words.
-    # Each element can either be a string for the entity's name or an array with
-    # two strings for the entity's name and synonyms respectively.
+    # Names can include two slashes (//) to add a list of synonyms.
+    #
+    # The type of overlookable entity can be modified with the `type` parameter.
+    # For compatibility with the gamefic-standard library, it is recommended to
+    # use either `Scenery` or `Rubble`.
     #
     # @example
     #   thing = make Thing, name: 'table', description: 'A table with cups and white china plates.'
-    #   thing.overlook 'cups', ['plates', 'white china']
+    #   thing.overlook 'cups', 'plates//white china'
     #
     #   # > look table
     #   #
@@ -29,16 +32,42 @@ module Gamefic
     #   #
     #   # There's nothing special about the plates.
     #
-    # @param names [String, Array(String, String)] Names or name/synonym arrays
+    # @param names [Array<String>] Names or name/synonym arrays
     # @param type [Class<Entity>] The type of overlookable entity (default is Scenery)
+    # @return [Array<Entity>]
     def overlook *names, type: Scenery
-      names.map do |name|
-        if name.is_a?(Array)
-          type.new(name: name[0], synonyms: name[1], parent: self)
-        else
-          type.new(name: name, parent: self)
-        end
+      names.map do |input|
+        parts = input.split('//')
+        name = parts[0].to_s.strip
+        synonyms = parts[1].to_s.strip
+        type.new(name: name, synonyms: synonyms, parent: self)
       end
+    end
+
+    # A shortcut to overlookable Scenery that can be called from `make` parameters.
+    #
+    # @example
+    #   make Thing, name: 'table',
+    #               description: 'A table with a checkered design.',
+    #               scenery: ['checkered design']
+    #
+    # @param [Array<String>]
+    # @return [void]
+    def scenery= names
+      overlook(*names, type: Scenery)
+    end
+
+    # A shortcut to overlookable Rubble that can be called from `make` parameters.
+    #
+    # @example
+    #   make Thing, name: 'table',
+    #               description: 'A table with a plate on it.',
+    #               rubble: ['plate']
+    #
+    # @param [Array<String>]
+    # @return [void]
+    def rubble= names
+      overlook(*names, type: Rubble)
     end
   end
 end

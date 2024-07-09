@@ -66,12 +66,12 @@ MyGame.seed do
 end
 ```
 
-Separate names from synonyms by passing them as an array:
+Separate names from synonyms with two slashes:
 
 ```ruby
 MyGame.seed do
     @room = make Room, name: 'room', description: 'A room with a tall ceiling and a dark wooden floor.'
-    @room.overlook ['ceiling', 'tall'], ['floor', 'dark wooden']
+    @room.overlook 'ceiling//tall', 'floor//dark wooden'
 end
 ```
 
