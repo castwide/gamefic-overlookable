@@ -7,7 +7,7 @@ RSpec.describe Gamefic::Overlookable do
 
       seed do
         @room = make Room, name: 'room', description: 'A room with four walls and a ceiling.'
-        @room.overlook 'ceiling', ['walls', 'four']
+        @room.overlook ['walls', 'four'], 'ceiling'
       end
 
       introduction do |actor|

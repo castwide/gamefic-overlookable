@@ -3,7 +3,7 @@
 require 'gamefic'
 require 'gamefic-standard'
 
-require_relative "overlookable/version"
+require_relative 'overlookable/version'
 
 module Gamefic
   # A mixin for implementing nouns as Scenery with a default description.
@@ -11,7 +11,7 @@ module Gamefic
   module Overlookable
     # Create Scenery that provides a default description for unimplemented words.
     # Each element can either be a string for the entity's name or an array with
-    # two strings to define a name and synonyms.
+    # two strings for the entity's name and synonyms respectively.
     #
     # @example
     #   thing = make Thing, name: 'table', description: 'A table with cups and white china plates.'
