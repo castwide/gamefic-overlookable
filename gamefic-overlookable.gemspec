@@ -36,6 +36,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'gamefic', '~> 3.0'
   spec.add_dependency 'gamefic-standard', '~> 3.0'
 
+  spec.add_development_dependency 'opal-rspec', '~> 1.0'
+  spec.add_development_dependency 'opal-sprockets', '~> 1.0'
   spec.add_development_dependency 'simplecov', '~> 0.22'
 
   # For more information and examples about making a new gem, check out our

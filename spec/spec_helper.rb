@@ -2,7 +2,7 @@
 
 require 'simplecov'
 SimpleCov.start
-require "gamefic-overlookable"
+require_relative 'shared_helper'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
