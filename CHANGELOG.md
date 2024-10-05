@@ -1,6 +1,6 @@
-## 1.0.1
+## 1.0.1 - October 5, 2024
 - License
-- Development dpendencies
+- Development dependencies
 
 ## 1.0.0 - August 7, 2024
 - First release
